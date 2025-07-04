@@ -4,7 +4,11 @@ import {
 } from '@/lib/actions/user.actions';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
-import { PlaidLinkOnSuccess, usePlaidLink } from 'react-plaid-link';
+import {
+	PlaidLinkOnSuccess,
+	PlaidLinkOptions,
+	usePlaidLink,
+} from 'react-plaid-link';
 import { Button } from './ui/button';
 
 const PlaidLink = ({ user, variant }: PlaidLinkProps) => {

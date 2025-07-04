@@ -18,7 +18,6 @@ const AuthForm = ({ type }: { type: string }) => {
 	const router = useRouter();
 	const [user, setUser] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
-	// const loggedInUser = await getLoggedInUser();
 
 	const formSchema = authFormSchema(type);
 
