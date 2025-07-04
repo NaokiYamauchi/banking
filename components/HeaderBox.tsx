@@ -3,7 +3,7 @@ const HeaderBox = ({
 	title,
 	subtext,
 	user,
-}): HeaderBoxProps => {
+}: HeaderBoxProps) => {
 	return (
 		<div className="header-box">
 			<h1 className="header-box-title">
