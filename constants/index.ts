@@ -76,6 +76,12 @@ export const topCategoryStyles = {
 		},
 		icon: '/icons/coins.svg',
 	},
+	Success: {
+		borderColor: 'border-[#12B76A]',
+		backgroundColor: 'bg-[#12B76A]',
+		textColor: 'text-[#027A48]',
+		chipBackgroundColor: 'bg-[#ECFDF3]',
+	},
 	default: {
 		bg: 'bg-pink-25',
 		circleBg: 'bg-pink-100',
@@ -186,4 +192,20 @@ export const transactionCategoryStyles = {
 		textColor: 'text-gray-600',
 		chipBackgroundColor: 'bg-gray-100',
 	},
+};
+
+export const statusCategoryStyles = {
+	Processing: {
+		borderColor: 'border-blue-500',
+		backgroundColor: 'bg-blue-500',
+		textColor: 'text-blue-700',
+		chipBackgroundColor: 'bg-blue-100',
+	},
+	Success: {
+		borderColor: 'border-green-500',
+		backgroundColor: 'bg-green-500',
+		textColor: 'text-green-700',
+		chipBackgroundColor: 'bg-green-100',
+	},
+	// Add other statuses like 'Pending' or 'Failed' here
 };
