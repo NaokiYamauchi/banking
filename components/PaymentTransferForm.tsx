@@ -65,7 +65,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
 
 			// 3. Validate that both bank accounts were found before proceeding.
 			if (!senderBank || !receiverBank) {
-				// You can add a more user-friendly error message here using a toast notification
+				// TODO: add a more user-friendly error message here using a toast notification
 				console.error('Invalid sender or receiver bank details.');
 				throw new Error(
 					'Could not find bank details for sender or receiver.'
@@ -103,7 +103,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
 			}
 		} catch (error) {
 			console.error('Submitting create transfer request failed: ', error);
-			// Consider showing an error message to the user here
+			// TODO: add an error message to the user here
 		} finally {
 			setIsLoading(false);
 		}
