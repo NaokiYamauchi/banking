@@ -6,7 +6,7 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table';
-import { transactionCategoryStyles } from '@/constants';
+import { statusCategoryStyles, transactionCategoryStyles } from '@/constants';
 import {
 	cn,
 	formatAmount,
@@ -14,22 +14,6 @@ import {
 	getTransactionStatus,
 	removeSpecialCharacters,
 } from '@/lib/utils';
-
-// const CategoryBadge = ({ category }: CategoryBadgeProps) => {
-// 	const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
-// 		transactionCategoryStyles[
-// 			category as keyof typeof transactionCategoryStyles
-// 		] || transactionCategoryStyles.default;
-
-// 	return (
-// 		<div className={cn('category-badge', borderColor, chipBackgroundColor)}>
-// 			<div className={cn('size-2 rounded-full', backgroundColor)} />
-// 			<p className={cn('text-[12px] font-medium', textColor)}>
-// 				{category}
-// 			</p>
-// 		</div>
-// 	);
-// };
 
 const CategoryBadge = ({ category }: CategoryBadgeProps) => {
 	const categoryMap: {
@@ -65,6 +49,19 @@ const CategoryBadge = ({ category }: CategoryBadgeProps) => {
 			<p className={cn('text-[12px] font-medium', textColor)}>
 				{formattedCategory}
 			</p>
+		</div>
+	);
+};
+
+export const StatusBadge = ({ status }: { status: string }) => {
+	const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
+		statusCategoryStyles[status as keyof typeof statusCategoryStyles] ||
+		transactionCategoryStyles.Default;
+
+	return (
+		<div className={cn('category-badge', borderColor, chipBackgroundColor)}>
+			<div className={cn('size-2 rounded-full', backgroundColor)} />
+			<p className={cn('text-[12px] font-medium', textColor)}>{status}</p>
 		</div>
 	);
 };
@@ -126,7 +123,7 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
 							</TableCell>
 
 							<TableCell className="pl-2 pr-10">
-								<CategoryBadge category={status} />
+								<StatusBadge status={status} />
 							</TableCell>
 
 							<TableCell className="min-w-32 pl-2 pr-10">
