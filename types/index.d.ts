@@ -97,7 +97,9 @@ declare type AccountTypes =
 	| 'investment'
 	| 'other';
 
-declare type Category = 'Food and Drink' | 'Travel' | 'Transfer';
+declare interface Transaction {
+	category: string;
+}
 
 declare type CategoryCount = {
 	name: string;

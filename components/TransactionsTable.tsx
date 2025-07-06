@@ -15,17 +15,55 @@ import {
 	removeSpecialCharacters,
 } from '@/lib/utils';
 
+// const CategoryBadge = ({ category }: CategoryBadgeProps) => {
+// 	const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
+// 		transactionCategoryStyles[
+// 			category as keyof typeof transactionCategoryStyles
+// 		] || transactionCategoryStyles.default;
+
+// 	return (
+// 		<div className={cn('category-badge', borderColor, chipBackgroundColor)}>
+// 			<div className={cn('size-2 rounded-full', backgroundColor)} />
+// 			<p className={cn('text-[12px] font-medium', textColor)}>
+// 				{category}
+// 			</p>
+// 		</div>
+// 	);
+// };
+
 const CategoryBadge = ({ category }: CategoryBadgeProps) => {
+	const categoryMap: {
+		[key: string]: keyof typeof transactionCategoryStyles;
+	} = {
+		FOOD_AND_DRINK: 'Food and Drink',
+		SHOPS: 'Shopping',
+		GENERAL_MERCHANDISE: 'Shopping',
+		TRAVEL: 'Travel',
+		TRANSFER_IN: 'Transfer',
+		TRANSFER_OUT: 'Transfer',
+		LOAN_PAYMENTS: 'Payment',
+		BANK_FEES: 'Payment',
+		RENT: 'Rent',
+		ENTERTAINMENT: 'Entertainment',
+	};
+
+	// Find the style key from our map, or fall back to 'Default'.
+	const styleKey = categoryMap[category] || 'Default';
+
 	const { borderColor, backgroundColor, textColor, chipBackgroundColor } =
-		transactionCategoryStyles[
-			category as keyof typeof transactionCategoryStyles
-		] || transactionCategoryStyles.default;
+		transactionCategoryStyles[styleKey];
+
+	// Format the raw category from Plaid for better readability in the UI.
+	// Example: 'FOOD_AND_DRINK' becomes 'Food and Drink'.
+	const formattedCategory = category
+		.replace(/_/g, ' ')
+		.replace(/\b\w/g, (l) => l.toUpperCase());
 
 	return (
 		<div className={cn('category-badge', borderColor, chipBackgroundColor)}>
 			<div className={cn('size-2 rounded-full', backgroundColor)} />
 			<p className={cn('text-[12px] font-medium', textColor)}>
-				{category}
+				{formattedCategory}
 			</p>
 		</div>
 	);
