@@ -269,7 +269,9 @@
   }
 
   .plaidlink-default {
-    @apply flex !justify-start cursor-pointer gap-3 rounded-lg !bg-transparent flex-row;
+    /*  gemini text-left text-[16px] font-semibold text-black-2 transition-colors hover: bg-gray-100 */
+    /* sidebar @apply hover:bg-gray-100; */
+    @apply flex w-full gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start;
   }
 
   /* Auth */
@@ -376,7 +378,7 @@
   }
 
   .sidebar-link {
-    @apply flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start;
+    @apply flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start hover:bg-gray-100;
   }
 
   .sidebar-label {
