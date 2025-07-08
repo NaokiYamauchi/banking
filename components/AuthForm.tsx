@@ -13,11 +13,11 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import CustomInput from './CustomInput';
+import PlaidLink from './PlaidLink';
 const AuthForm = ({ type }: { type: string }) => {
 	const router = useRouter();
 	const [user, setUser] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
-	// const loggedInUser = await getLoggedInUser();
 
 	const formSchema = authFormSchema(type);
 
@@ -33,7 +33,7 @@ const AuthForm = ({ type }: { type: string }) => {
 			city: '',
 			state: '',
 			postalCode: '',
-			dob: '',
+			dateOfBirth: '',
 			ssn: '',
 		},
 	});
@@ -42,10 +42,23 @@ const AuthForm = ({ type }: { type: string }) => {
 	const onSubmit = async (data: z.infer<typeof formSchema>) => {
 		setIsLoading(true);
 		try {
+			const userData = {
+				firstName: data.firstName!,
+				lastName: data.lastName!,
+				address1: data.address1!,
+				city: data.city!,
+				state: data.state!,
+				postalCode: data.postalCode!,
+				dateOfBirth: data.dateOfBirth!,
+				ssn: data.ssn!,
+				email: data.email!,
+				password: data.password!,
+			};
+
 			// Sign up with Appwrite & create plain link token
 
 			if (type === 'sign-up') {
-				const newUser = await signUp(data);
+				const newUser = await signUp(userData);
 				setUser(newUser);
 			}
 			if (type === 'sign-in') {
@@ -97,7 +110,9 @@ const AuthForm = ({ type }: { type: string }) => {
 			</header>
 
 			{user ? (
-				<div className="flex flex-col gap-4"></div>
+				<div className="flex flex-col gap-4">
+					<PlaidLink user={user} variant="primary" />
+				</div>
 			) : (
 				<>
 					{' '}
@@ -160,7 +175,7 @@ const AuthForm = ({ type }: { type: string }) => {
 										<div className="flex-1">
 											<CustomInput
 												control={form.control}
-												name="dob"
+												name="dateOfBirth"
 												label="Date of Birth"
 												placeholder="YYYY-MM-DD"
 											/>
